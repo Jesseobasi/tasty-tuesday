@@ -13,13 +13,17 @@
 }
 
 body {
-  background-color: #f7f5f2;
-  color: #0f0f0f;
+  background: radial-gradient(circle at 20% 20%, rgba(255, 79, 121, 0.12), transparent 40%),
+    radial-gradient(circle at 80% 15%, rgba(255, 130, 170, 0.08), transparent 32%),
+    linear-gradient(140deg, #0b0d14 0%, #0c101d 45%, #0b0d14 100%);
+  color: #e5e7eb;
 }
 
 .dark body {
-  background-color: #0d0d0d;
-  color: #f7f5f2;
+  background: radial-gradient(circle at 20% 20%, rgba(255, 79, 121, 0.12), transparent 40%),
+    radial-gradient(circle at 80% 15%, rgba(255, 130, 170, 0.08), transparent 32%),
+    linear-gradient(140deg, #0b0d14 0%, #0c101d 45%, #0b0d14 100%);
+  color: #e5e7eb;
 }
 
 a {
@@ -36,9 +40,28 @@ a {
 }
 
 .card {
-  @apply bg-white dark:bg-neutral-900 shadow-cozy rounded-2xl border border-neutral-100 dark:border-neutral-800;
+  @apply rounded-3xl border border-neutral-800/70 bg-gradient-to-b from-[#121725] to-[#0b0f1f] shadow-[0_25px_70px_-35px_rgba(0,0,0,0.75)] relative overflow-hidden;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: 24px;
+  background: linear-gradient(140deg, rgba(255,79,121,0.25), rgba(255,79,121,0.05), rgba(255,79,121,0.2));
+  opacity: 0.45;
+  z-index: 0;
+}
+
+.card > * {
+  position: relative;
+  z-index: 1;
 }
 
 .skeleton {
   @apply animate-pulse bg-neutral-200 dark:bg-neutral-800 rounded-md;
+}
+
+.pill {
+  @apply rounded-full bg-[#111827] text-xs text-neutral-300 px-3 py-1 border border-neutral-800;
 }

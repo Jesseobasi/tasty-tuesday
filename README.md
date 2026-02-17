@@ -34,6 +34,11 @@ NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=tasty-tuesday-6cd5a.appspot.com
 NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=623553068778
 NEXT_PUBLIC_FIREBASE_APP_ID=1:623553068778:web:13444027c17c6560922193
 NEXT_PUBLIC_FIREBASE_FUNCTIONS_REGION=us-central1
+NEXT_PUBLIC_DEMO_MODE=false
+SHEETS_SHEET_ID=1qEOw5oT-Rc_zb68DVNB0lHHCcqGRM1vkVao0j9jX7ac
+SHEETS_RANGE="Form Responses 1!A:Z"
+SHEETS_CLIENT_EMAIL=your-service-account@project.iam.gserviceaccount.com
+SHEETS_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\\n...\\n-----END PRIVATE KEY-----\\n"
 ```
 
 ## Firebase setup
@@ -48,8 +53,9 @@ NEXT_PUBLIC_FIREBASE_FUNCTIONS_REGION=us-central1
 - Callable functions:
   - `createBooking(eventId)`: transactionally enforce one booking per user, decrement seats, store userEmail, send confirmation email.
   - `cancelBooking()`: marks booking cancelled and re-adds a seat.
-  - `adminCreateEvent`, `adminUpdateEvent`, `adminDeleteEvent`: admin-only CRUD for events.
-  - `adminCancelBooking(bookingId)`: admin-only cancellation to free a seat.
+- `adminCreateEvent`, `adminUpdateEvent`, `adminDeleteEvent`: admin-only CRUD for events.
+- `adminCancelBooking(bookingId)`: admin-only cancellation to free a seat.
+- `/api/forms` server route: reads Google Sheet responses via Sheets API using service account; returns normalized JSON.
 - Scheduled function:
   - `sendReminders`: runs hourly; emails bookings for events occurring ~24 hours out.
 
@@ -90,11 +96,12 @@ Firebase Hosting uses the frameworks backend for SSR; ensure `firebase experimen
   - `users` docs scoped to owner.
 
 ## UI notes
-- Warm minimal palette (black/white base, accent pink `#f472b6`).
+- Warm minimal palette (black/white base, accent pink `#ff4f79`).
 - Responsive navbar with mobile drawer, soft shadows, rounded cards, skeleton loaders.
 - Light/dark theme toggle with persisted preference.
 - Landing hero includes placeholder promo video — replace iframe src when you have the final link.
-- Logo: drop your asset into `public/` and update the `Navbar` avatar if desired.
+- Add your logo to `public/logo.png` (used in the navbar). If the file name differs, update `src/components/layout/Navbar.tsx`.
+- Admin forms dashboard at `/admin/forms` lists live Google Form responses from the linked sheet with search and refresh.
 
 ## Future work
 - Hook up real payment confirmation flow if needed.

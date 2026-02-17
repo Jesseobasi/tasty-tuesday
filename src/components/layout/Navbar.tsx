@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 import { Button } from '../ui/Button';
@@ -12,6 +13,7 @@ const navLinks = [
   { href: '/events', label: 'Events' },
   { href: '/dashboard', label: 'My Booking' },
   { href: '/admin', label: 'Admin' },
+  { href: '/admin/forms', label: 'Forms' },
 ];
 
 export const Navbar = () => {
@@ -21,21 +23,24 @@ export const Navbar = () => {
   const { theme, toggle } = useTheme();
 
   return (
-    <header className="sticky top-0 z-20 bg-offwhite/90 dark:bg-[#0d0d0d]/80 backdrop-blur border-b border-neutral-100 dark:border-neutral-800">
+    <header className="sticky top-0 z-20 border-b border-neutral-800 bg-[#0b0d14]/80 backdrop-blur">
       <div className="container-responsive flex items-center justify-between py-4">
-        <Link href="/" className="flex items-center gap-2 text-lg font-semibold tracking-tight">
-          <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-black text-white font-bold">TT</span>
-          <span className="hidden sm:block">Tasty Tuesday</span>
+        <Link href="/" className="flex items-center gap-3 text-lg font-semibold tracking-tight text-offwhite">
+          <div className="relative h-10 w-32 sm:w-40">
+            <Image src="/logo.png" alt="Tasty Tuesday" fill sizes="160px" className="object-contain drop-shadow-[0_10px_25px_rgba(0,0,0,0.35)]" />
+          </div>
         </Link>
 
         <nav className="hidden items-center gap-6 md:flex">
           {navLinks
-            .filter((l) => (l.href === '/admin' ? isAdmin : true))
+            .filter((l) => (!l.href.startsWith('/admin') ? true : isAdmin))
             .map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`text-sm font-medium hover:text-black ${pathname === link.href ? 'text-black' : 'text-muted'}`}
+                className={`text-sm font-medium transition-colors ${
+                  pathname === link.href ? 'text-offwhite' : 'text-neutral-400 hover:text-offwhite'
+                }`}
               >
                 {link.label}
               </Link>
@@ -69,15 +74,15 @@ export const Navbar = () => {
       </div>
 
       {open && (
-        <div className="md:hidden border-t border-neutral-100 bg-offwhite">
+        <div className="md:hidden border-t border-neutral-800 bg-[#0b0d14]">
           <div className="container-responsive flex flex-col gap-4 py-4">
             {navLinks
-              .filter((l) => (l.href === '/admin' ? isAdmin : true))
+              .filter((l) => (!l.href.startsWith('/admin') ? true : isAdmin))
               .map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`text-sm font-medium ${pathname === link.href ? 'text-black' : 'text-muted'}`}
+                  className={`text-sm font-medium ${pathname === link.href ? 'text-offwhite' : 'text-neutral-400'}`}
                   onClick={() => setOpen(false)}
                 >
                   {link.label}

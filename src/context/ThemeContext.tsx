@@ -12,7 +12,7 @@ interface ThemeContextValue {
 const ThemeContext = createContext<ThemeContextValue | undefined>(undefined);
 
 export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
-  const [theme, setTheme] = useState<Theme>('light');
+  const [theme, setTheme] = useState<Theme>('dark');
 
   useEffect(() => {
     const stored = (typeof window !== 'undefined' && localStorage.getItem('tt-theme')) as Theme | null;
@@ -21,9 +21,9 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
       document.documentElement.classList.toggle('dark', stored === 'dark');
     } else {
       const prefersDark = window.matchMedia?.('(prefers-color-scheme: dark)').matches;
-      const next = prefersDark ? 'dark' : 'light';
+      const next = prefersDark ? 'dark' : 'dark';
       setTheme(next);
-      document.documentElement.classList.toggle('dark', prefersDark);
+      document.documentElement.classList.toggle('dark', true);
     }
   }, []);
 

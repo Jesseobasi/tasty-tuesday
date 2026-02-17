@@ -25,9 +25,9 @@ export default function DashboardPage() {
     <ProtectedRoute>
       <div className="container-responsive space-y-6 py-12">
         <div className="space-y-1">
-          <p className="text-xs uppercase tracking-[0.3em] text-muted">Dashboard</p>
-          <h1 className="text-3xl font-bold">Your booking</h1>
-          <p className="text-sm text-neutral-600">One seat per guest. Manage it here.</p>
+          <p className="text-xs uppercase tracking-[0.3em] text-neutral-400">Dashboard</p>
+          <h1 className="text-3xl font-bold text-offwhite">Your booking</h1>
+          <p className="text-sm text-neutral-400">One seat per guest. Manage it here.</p>
         </div>
 
         {isLoading && (
@@ -40,8 +40,8 @@ export default function DashboardPage() {
 
         {!isLoading && !booking && (
           <Card className="space-y-2">
-            <h3 className="text-lg font-semibold">No booking yet</h3>
-            <p className="text-sm text-neutral-700">Pick an event and reserve your spot.</p>
+            <h3 className="text-lg font-semibold text-offwhite">No booking yet</h3>
+            <p className="text-sm text-neutral-400">Pick an event and reserve your spot.</p>
             <Button onClick={() => (window.location.href = '/events')}>Book an event</Button>
           </Card>
         )}
@@ -51,10 +51,10 @@ export default function DashboardPage() {
             <div className="flex items-center justify-between">
               <div>
                 <h3 className="text-xl font-semibold">{bookedEvent.title}</h3>
-                <p className="text-sm text-neutral-700">{format(asDate(bookedEvent.date), 'EEEE, MMM d, yyyy')}</p>
-                <p className="text-sm text-neutral-600">Status: {booking.status}</p>
+                <p className="text-sm text-neutral-400">{format(asDate(bookedEvent.date), 'EEEE, MMM d, yyyy')}</p>
+                <p className="text-sm text-neutral-400">Status: {booking.status}</p>
               </div>
-              <span className="rounded-full bg-neutral-100 px-3 py-1 text-xs text-neutral-700">
+              <span className="pill">
                 Seats left: {bookedEvent.seatsAvailable}
               </span>
             </div>

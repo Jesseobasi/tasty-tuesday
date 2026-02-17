@@ -7,8 +7,11 @@ module.exports = {
       colors: {
         base: '#0f0f0f',
         offwhite: '#f7f5f2',
-        accent: '#f472b6',
-        muted: '#9ca3af'
+        accent: '#ff4f79',
+        accentHover: '#ff3b6b',
+        muted: '#9ca3af',
+        surface: '#0b0d14',
+        surfaceAlt: '#111827'
       },
       boxShadow: {
         cozy: '0 10px 30px -12px rgba(0,0,0,0.25)',

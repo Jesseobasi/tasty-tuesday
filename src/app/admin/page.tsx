@@ -41,9 +41,9 @@ export default function AdminPage() {
     <AdminRoute>
       <div className="container-responsive space-y-8 py-12">
         <div className="space-y-1">
-          <p className="text-xs uppercase tracking-[0.3em] text-muted">Admin</p>
-          <h1 className="text-3xl font-bold">Manage events</h1>
-          <p className="text-sm text-neutral-600">Create, edit, delete events and control seats.</p>
+          <p className="text-xs uppercase tracking-[0.3em] text-neutral-400">Admin</p>
+          <h1 className="text-3xl font-bold text-offwhite">Manage events</h1>
+          <p className="text-sm text-neutral-400">Create, edit, delete events and control seats.</p>
         </div>
 
         <Card className="space-y-4">

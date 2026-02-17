@@ -33,9 +33,9 @@ export default function EventsPage() {
   return (
     <div className="container-responsive space-y-8 py-12">
       <div className="space-y-2">
-        <p className="text-xs uppercase tracking-[0.3em] text-muted">Events</p>
-        <h1 className="text-3xl font-bold">Choose your Tasty Tuesday</h1>
-        <p className="text-sm text-neutral-600">One booking per guest. Seats are limited.</p>
+        <p className="text-xs uppercase tracking-[0.3em] text-neutral-400">Events</p>
+        <h1 className="text-3xl font-bold text-offwhite">Choose your Tasty Tuesday</h1>
+        <p className="text-sm text-neutral-400">One booking per guest. Seats are limited.</p>
       </div>
 
       {(isLoading || bookingLoading) && (
@@ -62,17 +62,17 @@ export default function EventsPage() {
             <Card key={event.id} className="space-y-4">
               <div className="flex items-start justify-between gap-3">
                 <div className="space-y-1">
-                  <h3 className="text-xl font-semibold">{event.title}</h3>
-                  <p className="text-sm text-neutral-600">{event.description}</p>
-                  <p className="text-sm font-medium">{format(asDate(event.date), 'EEEE, MMM d, yyyy')}</p>
+                  <h3 className="text-xl font-semibold text-offwhite">{event.title}</h3>
+                  <p className="text-sm text-neutral-400">{event.description}</p>
+                  <p className="text-sm font-medium text-neutral-300">{format(asDate(event.date), 'EEEE, MMM d, yyyy')}</p>
                 </div>
-                <span className="rounded-full bg-neutral-100 px-3 py-1 text-xs text-neutral-700">
+                <span className="pill">
                   {event.seatsAvailable} / {event.seatsTotal} seats
                 </span>
               </div>
               <div className="flex flex-wrap gap-3 text-sm text-neutral-700">
                 {event.pricingTiers.map((tier) => (
-                  <span key={tier.name} className="rounded-full bg-neutral-100 px-3 py-1">
+                  <span key={tier.name} className="pill">
                     {tier.name}: ${tier.price}
                   </span>
                 ))}
